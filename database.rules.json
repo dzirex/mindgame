@@ -1,0 +1,10 @@
+{
+  "rules": {
+    "rooms": {
+      "$roomId": {
+        ".read": "auth != null && data.child('players').child(auth.uid).exists()",
+        ".write": "auth != null && ( !data.exists() || data.child('players').child(auth.uid).exists() || (!data.child('started').val() && !data.child('players').hasChild(auth.uid) && data.child('players').numChildren() < 5) )"
+      }
+    }
+  }
+}
